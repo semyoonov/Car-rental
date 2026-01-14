@@ -9,7 +9,7 @@ from functools import wraps
 
 
 load_dotenv()
-ADMIN_PASS = os.getenv("ADMIN_PASS")
+ADMIN_PASS = os.getenv("ADMIN_PASSWORD")
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 init_db_sync()
@@ -56,7 +56,7 @@ def admin():
     
     if request.method == 'POST':
         password = request.form.get('password')
-        if password == 'n4paro1':
+        if password == ADMIN_PASS:
             session['is_admin'] = True
         return redirect('/admin')
     
