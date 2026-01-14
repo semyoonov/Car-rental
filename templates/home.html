@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @media (max-width: 500px) {
+            .user-info {
+                flex-direction: column; /* Изменяем направление на вертикальное */
+                align-items: center; /* Центрируем содержимое */
+                position: static; /* Убираем абсолютное позиционирование */
+                margin-top: 10px; /* Добавляем отступ сверху */
+            }
+
+            .user-info span {
+                margin-bottom: 5px; /* Добавляем отступ между именем пользователя и кнопкой */
+            }
+        }
+
+        /* Основной сброс стилей */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Основной стиль страницы */
+        body, html {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #e9f1f5, #d5e6f1);
+            color: #333;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Шапка сайта */
+        header {
+            background-color: #02818a;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 2rem;
+            width: 100%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        /* Логотип */
+        .logo {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            height: 60px;
+            width: auto;
+            transform: translateY(-50%);
+        }
+
+        /* Контейнер для кнопки входа / имени пользователя */
+        .user-info {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Стиль кнопки входа или выхода */
+        .user-info .button {
+            background-color: #026b6b;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .user-info .button:hover {
+            background-color: #024f4f;
+        }
+
+        /* Основной контейнер */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Заголовок страницы */
+        h1 {
+            font-size: 3rem;
+            color: #02818a;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        /* Блок для кнопок */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            max-width: 600px;
+            gap: 35px;
+        }
+
+        /* Кнопки */
+        .button-container .button {
+            background-color: #02818a;
+            color: white;
+            padding: 20px 40px;
+            text-decoration: none;
+            font-size: 1.5rem;
+            border-radius: 50px;
+            display: inline-block;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .button-container .button:hover {
+            background-color: #026b6b;
+            transform: scale(1.05);
+        }
+
+        /* Футер */
+        footer {
+            background-color: #02818a;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            width: 100%;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-info span {
+            font-size: 1rem; /* Выберите нужный размер */
+            color: #f0f0f0; /* Цвет, если требуется */
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .button-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .button {
+                width: 90%;
+                margin-bottom: 20px;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+<!-- Основной контент -->
+<div class="container">
+    <h1>Прокат автомобилей в г. Сочи</h1>
+    <div class="button-container">
+        <button class="button" onclick="window.location.href='/list'">Арендовать</button>
+    </div>
+</div>
+
+<!-- Футер -->
+<footer>
+    <p>&copy; 2025. semyoonov</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма</title>
+    <style>
+        /* Сброс стилей */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Основные стили страницы */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #e9f1f5, #d5e6f1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        h1 {
+            color: #02818a;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Контейнер для формы */
+        #formDiv {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 600px;
+            text-align: left;
+        }
+
+        label {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            display: block;
+            color: #02818a;
+        }
+
+        select, input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        input[type="text"]:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #02818a; /* Цвет рамки при фокусе */
+            box-shadow: 0 0 5px rgba(2, 129, 138, 0.5);
+        }
+
+        select, input[type="number"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        input[type="number"]:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #02818a; /* Цвет рамки при фокусе */
+            box-shadow: 0 0 5px rgba(2, 129, 138, 0.5);
+        }
+
+        select, input[type="date"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+
+        input[type="date"]:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #02818a; /* Цвет рамки при фокусе */
+            box-shadow: 0 0 5px rgba(2, 129, 138, 0.5);
+        }
+
+        /* Кнопки Submit и Home */
+        .button {
+            background-color: #02818a;
+            color: #fff;
+            border: none;
+            padding: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .button:hover {
+            background-color: #026b6b;
+            transform: scale(1.05);
+        }
+
+        .button:focus {
+            outline: none;
+        }
+
+    </style>
+</head>
+<body>z
+
+<div id="formDiv">
+    <h1>Заполните форму</h1>
+
+    <form method="POST" action="/addc4r" enctype="multipart/form-data">
+        <label for="brand">Марка:</label>
+        <input type="text" id="brand" name="brand" required>
+        
+        <label for="model">Модель:</label>
+        <input type="text" id="model" name="model" required>
+
+        <label for="price">Цена:</label>
+        <!-- <input type="number" id="price" name="price" required 
+       style="width: 200px; height: 40px; padding: 5px; font-size: 16px; border-radius: 5px; outline: none; border: 1px solid #ccc;"> -->
+       <input type="number" id="price" name="price" required>
+
+        <br>
+        <label for="date">Добавьте фото:</label>
+        <input type="file" name="photo" accept="image/*" required>
+        <br>
+        <label for="date">Дата добавления:</label>
+        <input type="date">
+        <input type="submit" value="Отправить" class="button">
+
+    </form>
+
+    <button class="button" onclick="window.location.href='/'">На главную</button>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аренда авто</title>
+    <style>
+        @media (max-width: 500px) {
+            header {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: auto;
+                padding: 15px 10px;
+            }
+
+            /* Логотип адаптируем для центрирования */
+            .logo {
+                position: static; /* убираем абсолютное позиционирование */
+                height: 50px;
+                margin-bottom: 10px; /* добавляем отступ снизу */
+            }
+
+            /* Центрирование и вертикальное расположение элементов .user-info */
+            .user-info {
+                flex-direction: column;
+                align-items: center;
+                position: static; /* убираем абсолютное позиционирование */
+                gap: 5px; /* добавляем промежуток между элементами */
+            }
+
+            .user-info span {
+                font-size: 1rem;
+            }
+        }
+
+        /* Общие сбросы */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Основной стиль страницы */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #e9f1f5, #d5e6f1);
+            color: #333;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Шапка сайта */
+        header {
+            background-color: #02818a;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 2rem;
+            width: 100%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            height: 50px;
+        }
+
+        /* Логотип */
+        .logo {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            height: 60px;
+            width: auto;
+            transform: translateY(-50%);
+        }
+
+        /* Контейнер для кнопки входа / имени пользователя */
+        .user-info {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Стиль кнопки входа или выхода */
+        .user-info .button {
+            background-color: #026b6b;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .user-info .button:hover {
+            background-color: #024f4f;
+        }
+
+        /* Заголовок страницы */
+        h1, h2 {
+            color: #02818a;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Оформление кнопок навигации */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            gap: 15px;
+        }
+
+        .button {
+            background-color: #02818a;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background-color: #026b6b;
+        }
+
+        .card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .warn {
+            border-left: 8px solid #f4b400;
+        }
+
+        .info {
+            border-left: 8px solid #4285f4;
+        }
+
+        .crit {
+            border-left: 8px solid #ea4335;
+        }
+
+        .card h2 {
+            color: #333;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .card-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Футер */
+        footer {
+            background-color: #02818a;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            width: 100%;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: auto;
+            position: relative;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .username {
+            font-size: 1rem;
+            color: white;
+        }
+
+        .card-buttons {
+            align-items: flex-start;
+        }
+
+        .card h2, .card p, .username, .user-info span {
+            overflow-wrap: break-word; /* Перенос длинных слов */
+            word-wrap: break-word; /* Совместимость со старыми браузерами */
+            word-break: break-word; /* Перенос длинного текста */
+            hyphens: auto; /* Автоматически добавлять дефисы для длинных слов */
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .button {
+                width: 90%; /* Ширина кнопки чуть меньше 100% */
+                min-width: 150px; /* Минимальная ширина кнопки */
+                font-size: 0.9rem;
+                padding: 8px 15px;
+                margin: 0 auto; /* Центрируем кнопку */
+            }
+
+            .button-container {
+                display: flex;
+                justify-content: center;
+                margin-top: 20px;
+                margin-bottom: 30px;
+                gap: 15px; /* Промежуток между кнопками */
+            }
+
+            /* Установите min-width для кнопок */
+            .button-container .button {
+                width: auto; /* Позволяет кнопкам адаптироваться */
+                min-width: 95vw; /* Минимальная ширина кнопок 95% от ширины окна просмотра */
+                max-width: 100%; /* Ограничиваем максимальную ширину */
+                text-align: center; /* Выравнивание текста по центру */
+                padding: 10px 20px; /* Отступы внутри кнопки */
+                font-size: 0.9rem; /* Размер шрифта */
+                border-radius: 5px; /* Скругленные углы */
+                cursor: pointer; /* Указатель для курсора */
+                transition: background-color 0.3s ease; /* Плавный переход для цвета фона */
+                background-color: #02818a; /* Фоновый цвет кнопки */
+                color: #fff; /* Цвет текста */
+                border: none; /* Убираем рамку */
+            }
+
+            .card {
+                width: 100%; /* Ширина карточки чуть меньше 100% */
+                min-width: 95vw; /* Минимальная ширина карточки */
+                max-width: none; /* Убираем ограничение на ширину */
+                margin: 0 auto; /* Центрируем карточку */
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-radius: 10px;
+                padding: 20px;
+                margin-bottom: 20px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .card h2, .card p {
+                overflow-wrap: break-word; /* Перенос длинного текста */
+                word-wrap: break-word;
+                word-break: break-word;
+            }
+
+            .card h2, .card p {
+                overflow-wrap: break-word; /* Перенос длинного текста */
+                word-wrap: break-word; /* Совместимость со старыми браузерами */
+                word-break: break-word; /* Для управления переносом текста */
+            }
+        }
+
+        /* Адаптация для узких экранов */
+        @media (max-width: 500px) {
+            .button-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .card-buttons {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .button-container .button,
+            .card-buttons .button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        .cars-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 0;
+            list-style: none;
+            justify-content: center;
+        }
+
+        .car-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            width: 200px;
+            padding: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .car-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+
+        .car-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .car-card h3 {
+            margin: 5px 0;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .car-card p {
+            margin: 2px 0;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filters input {
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 0.9rem;
+        }
+
+        .filters .button {
+            padding: 8px 16px;
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- Шапка сайта -->
+<header>
+    {#    <h1>Аренда авто</h1>#}
+</header>
+
+<!-- Основной контент -->
+<div class="container">
+    <!-- Кнопки для переключения вкладок -->
+    <div class="button-container">
+        <a href="/" class="button">Главная</a>
+        <a href="/list" class="button">Сброс</a>
+        <a href="/admin" class="button">Админка</a>
+    </div>
+</div>
+
+<form method="get" class="filters">
+    <input type="text"
+           name="brand"
+           placeholder="Марка"
+           value="{{ request.args.get('brand', '') }}">
+
+    <input type="number"
+           name="price_min"
+           placeholder="Цена от"
+           value="{{ request.args.get('price_min', '') }}">
+
+    <input type="number"
+           name="price_max"
+           placeholder="Цена до"
+           value="{{ request.args.get('price_max', '') }}">
+
+    <button type="submit" class="button">Найти</button>
+    <!-- <a href="/list" class="button">Сброс</a> -->
+</form>
+
+<ul class="cars-list">
+    {% for car in cars %}
+        <li class="car-card">
+            {% if car.photo %}
+                <img src="{{ url_for('static', filename=car.photo) }}" alt="Фото {{ car.brand }}">
+            {% endif %}
+            <h3>{{ car.brand }} {{ car.model }}</h3>
+            <p>Цена: {{ car.price }}</p>
+            <p>ID: {{ car.id }}</p>
+        </li>
+    {% endfor %}
+</ul>
+
+<!-- Футер -->
+<footer>
+    <p href="/">&copy; 2025 semyoonov</p>
+</footer>
+
+</body>
+</html>
