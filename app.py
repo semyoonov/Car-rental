@@ -4,11 +4,17 @@ from database.models import Car
 import asyncio
 import uuid
 import os
+from dotenv import load_dotenv
 from functools import wraps 
+
+
+load_dotenv()
+ADMIN_PASS = os.getenv("ADMIN_PASS")
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 init_db_sync()
 app = Flask(__name__)
-app.secret_key = 'Wuo9KhLX7MRQG2WhP'
+app.secret_key = SECRET_KEY
 
 @app.route("/")
 def home():
