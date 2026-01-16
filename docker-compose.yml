@@ -1,11 +1,25 @@
 services:
+  db:
+    image: postgres:16-alpine
+    container_name: car_rental_db
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
   web:
     build:
       context: .
       dockerfile: web.dockerfile
     ports:
       - "5000:5000"
-    volumes:
-      - .:/app
+    env_file:
+      - .env
     environment:
       - PYTHONUNBUFFERED=1
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+volumes:
+  postgres_data:

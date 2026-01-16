@@ -1,3 +1,5 @@
 flask==3.0.0
-tortoise-orm==0.20.0
+flask_sqlalchemy==3.0.3
+sqlalchemy==2.0.20
 python-dotenv==1.0.1
+psycopg2-binary==2.9.9
